@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI를 활용한 회계 ERP 전문가 양성과정 - KICPA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+        }
+        /* 3D Flip Card Effect */
+        .perspective {
+            perspective: 1200px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        /* 프린트 스타일 최적화 (불필요한 UI 제거 후 포스터만 완전 점유) */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-poster-container, #printable-poster-container * {
+                visibility: visible;
+            }
+            #printable-poster-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100% !important;
+                height: auto !important;
+                box-shadow: none !important;
+                border: none !important;
+                background: white !important;
+                color: black !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<!-- 전체적으로 단어 단위 개행을 강제하기 위해 break-keep 속성을 최상위 body에 추가 적용 -->
+<body class="bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white leading-relaxed break-keep">
+
+<!-- 상단 네비게이션 바 -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <!-- KICPA CI 로고 이미지 (미 로드 시 텍스트 복구) -->
+            <div class="flex items-center">
+                <img src="kicpa_logo.png" alt="한국공인회계사회" class="h-10 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('fallback-header-kicpa').style.display='flex';">
+                <div id="fallback-header-kicpa" class="hidden items-center space-x-2">
+                    <div class="bg-blue-600 text-white p-2.5 rounded-xl font-extrabold text-base tracking-wider shadow-md shadow-blue-600/10">KICPA</div>
+                    <span class="font-bold text-slate-800 text-base sm:text-lg">한국공인회계사회</span>
+                </div>
+            </div>
+            <span class="text-slate-300 text-xl font-light">|</span>
+            <!-- 조세통람 CI 로고 이미지 -->
+            <div class="flex items-center">
+                <img src="josetongram_logo.png" alt="조세통람" class="h-6 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('fallback-header-jt').style.display='block';">
+                <span id="fallback-header-jt" class="hidden font-bold text-slate-800 text-base sm:text-lg">조세통람</span>
+            </div>
+            <div class="hidden xl:block border-l border-slate-200 pl-4 py-1">
+
+            </div>
+        </div>
+        <nav class="hidden xl:flex space-x-8 text-base font-semibold text-slate-600">
+            <a href="#vision" class="hover:text-blue-600 transition-colors">과정 소개</a>
+            <a href="#program-overview" class="hover:text-blue-600 transition-colors">모집 개요</a>
+            <a href="#curriculum" class="hover:text-blue-600 transition-colors">교육과정</a>
+            <a href="#web-card" class="hover:text-blue-600 transition-colors">진로 상담 카드</a>
+        </nav>
+        <div class="flex items-center space-x-3">
+            <span class="hidden lg:inline-flex items-center px-4 py-2 rounded-full text-xs sm:text-sm font-black bg-red-100 text-red-600 animate-pulse border border-red-200">
+                D-5 마감임박
+            </span>
+            <a href="https://hi.korchamhrd.net/education/applicationYWrite.do?rootMenuId=5226&menuId=5443&gaebalwon_cd=90120&gwajeong_no=M2026001&mojip_cd=111002&mode=insert&hullyeon_gb=890019" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-sm sm:text-base font-bold text-white bg-blue-600 hover:bg-blue-700 transition rounded-xl shadow-md shadow-blue-600/10">
+                원서접수하기
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="vision" class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-850 to-blue-950 text-white py-20 sm:py-28">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/40 via-transparent to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- 왼쪽: 과정명 중심의 메인 카피 (줄간격 완벽 개선) -->
+            <div class="lg:col-span-8 space-y-8 text-center lg:text-left">
+                <div class="inline-flex flex-col sm:flex-row sm:items-center gap-2 bg-red-500/15 border border-red-500/30 text-red-300 px-5 py-2.5 rounded-xl text-sm sm:text-base font-bold max-w-fit mx-auto lg:mx-0 shadow-sm">
+                    <span class="flex items-center"><i class="fa-solid fa-clock mr-2 animate-spin"></i> 접수마감 D-5일 (6월 15일 최종 마감!)</span>
+                    <span class="hidden sm:inline text-slate-500">|</span>
+                    <span class="text-emerald-355">교육부 · 대한상공회의소 주관 채용연계형 과정</span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-relaxed sm:leading-[1.4] lg:leading-[1.45] pb-2">
+                    AI를 활용한 회계 ERP<br class="hidden sm:inline">
+                    전문가 양성과정
+                </h1>
+                
+                <div class="border-l-4 border-blue-500 pl-5 py-2 text-white space-y-2 text-left max-w-fit mx-auto lg:mx-0">
+                    <p class="text-xl sm:text-2xl font-extrabold leading-normal">
+                        "회계사무소와 회계법인은 목적지가 아닙니다."
+                    </p>
+                    <p class="text-lg sm:text-xl font-bold text-emerald-300 leading-normal">
+                        기업과 사회를 이해하는 가장 강력한 출발점입니다.
+                    </p>
+                </div>
+                
+                <p class="text-slate-100 text-lg sm:text-xl font-medium max-w-3xl leading-relaxed pt-2">
+                    본 과정은 교육부와 대한상공회의소가 추진하는 「직업계고 채용연계형 직무교육과정」의 일환으로, 한국공인회계사회와 조세통람이 공동으로 운영하는 회계·세무 분야 실무형 인재양성 프로그램입니다.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="https://hi.korchamhrd.net/education/professionalSkillEduDetail.do?rootMenuId=5226&menuId=5443&gaebalwon_cd=90120&gwajeong_no=M2026001&sangtae=%EC%A0%91%EC%88%98%EC%A4%91" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-extrabold bg-blue-600 hover:bg-blue-700 text-white text-base sm:text-lg rounded-xl transition shadow-lg shadow-blue-600/20">
+                        <i class="fa-solid fa-file-lines mr-2.5 text-emerald-300"></i> 공식 상세 공고 보기
+                    </a>
+                    <a href="(3학년)직업계고 채용연계형 직무교육과정 지원사업 교육과정 운영계획서_조세통람.pdf" download target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-extrabold bg-slate-800 hover:bg-slate-750 text-white text-base sm:text-lg rounded-xl transition border border-slate-700">
+                        <i class="fa-solid fa-magnifying-glass mr-2.5 text-slate-300"></i> 교육과정 상세보기
+                    </a>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 공동 주관사 정보 요약 (회색 글씨 -> 화이트/연청색 고대비화 및 로고 이미지 교체 슬롯) -->
+            <div class="lg:col-span-4">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+                    <div class="absolute -top-3 -right-3 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white text-xl font-bold animate-pulse shadow-lg">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    
+                    <!-- KICPA & 조세통람 파트너십 로고 결합부 -->
+                    <div class="flex items-center gap-3 mb-5 border-b border-white/15 pb-4">
+                        <div class="flex items-center">
+                            <img src="kicpa_logo_white.png" alt="KICPA" class="h-8 w-auto object-contain" id="fallback-partner-kicpa" onerror="this.style.display='none'; document.getElementById('text-partner-kicpa').style.display='block';">
+                            <span id="text-partner-kicpa" class="hidden text-white font-black text-lg">KICPA</span>
+                        </div>
+                        <span class="text-white/30 text-lg">×</span>
+                        <div class="flex items-center">
+                            <img src="josetongram_logo_white.png" alt="조세통람" class="h-6 w-auto object-contain" id="fallback-partner-jt" onerror="this.style.display='none'; document.getElementById('text-partner-jt').style.display='block';">
+                            <span id="text-partner-jt" class="hidden text-white font-black text-lg">조세통람</span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                            <span class="text-sm sm:text-base text-blue-200 font-bold block mb-1.5">한국공인회계사회 역할</span>
+                            <span class="text-base sm:text-lg text-white font-medium leading-relaxed">교육과정 설계, 강사진 구성, 국가공인 AT 자격 연계, 회원사 채용연계</span>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                            <span class="text-sm sm:text-base text-emerald-200 font-bold block mb-1.5">조세통람 역할</span>
+                            <span class="text-base sm:text-lg text-white font-medium leading-relaxed">교육생 모집 및 선발, 교육 운영 및 학사관리 전반 지원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 왜 회계·세무 역량인가? (Why Section) -->
+<section id="why-career" class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight">
+                AI 시대, 어떤 인재로 출발하게 할 것인가?
+            </h2>
+            <p class="text-slate-750 mt-5 text-lg sm:text-xl leading-relaxed">
+                AI 기술의 발전으로 데이터는 더욱 쉽게 생성되고 활용되고 있습니다.<br>
+                그러나 기업이 어떻게 돈을 벌고 성장하는지 이해하고, 거래와 재무 데이터를 해석하며, 의사결정을 지원하는 역량은 여전히 사람의 몫입니다.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+            
+            <!-- 가치 1 (제목 크기를 소폭 다듬어 두 줄 줄바꿈 현상 조치) -->
+            <div class="flex flex-col p-8 sm:p-10 bg-slate-50 hover:bg-slate-100/90 transition duration-300 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-8 font-mono font-bold">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black mb-5 text-slate-900">평생 활용하는 가장 강력한 비즈니스 언어</h3>
+                <p class="text-slate-700 text-base sm:text-lg leading-relaxed">
+                    회계·세무는 기업의 자금 흐름, 수익 구조, 세금, 투자, 경영 의사결정을 이해하는 핵심 기초 역량입니다. 취업을 하든 창업을 하든 비즈니스의 원리를 꿰뚫어 볼 수 있는 평생의 가장 강력한 비즈니스 언어가 되어 줍니다.
+                </p>
+            </div>
+
+            <!-- 가치 2 -->
+            <div class="flex flex-col p-8 sm:p-10 bg-slate-50 hover:bg-slate-100/90 transition duration-300 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-8 font-mono font-bold">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black mb-5 text-slate-900">일생을 관통하는 든든한 평생 경쟁력</h3>
+                <p class="text-slate-700 text-base sm:text-lg leading-relaxed">
+                    사람은 평생 세금과 회계를 벗어날 수 없습니다. <strong>첫 월급을 받을 때도, 주식에 투자할 때도, 창업을 할 때도, 기업에 입사할 때도</strong> 회계와 세무에 대한 이해는 살아가는 매 순간에 강력한 무기가 되어 줍니다.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- 교육과정 개요 (Program Overview) -->
+<section id="program-overview" class="py-20 bg-slate-950 text-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <h2 class="text-3xl sm:text-4xl font-black mt-3 text-white">AI 활용 회계 ERP 전문가 양성과정 개요</h2>
+            <p class="text-white mt-5 text-base sm:text-lg font-medium">
+                교육부·대한상공회의소가 승인한 직업계고 채용연계형 직무교육과정입니다. <br>회계·세무 실무, ERP 활용, AI 기반 업무 활용 역량을 학습하고, <br>교육 수료 후 회계사무소 및 회계법인 채용 연계를 지원합니다.
+            </p>
+            <!-- 개요 부분 바로가기 버튼 배치 -->
+            <div class="flex justify-center mt-8">
+                <a href="https://hi.korchamhrd.net/education/professionalSkillEduDetail.do?rootMenuId=5226&menuId=5443&gaebalwon_cd=90120&gwajeong_no=M2026001&sangtae=%EC%A0%91%EC%88%98%EC%A4%91" target="_blank" class="inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-lg font-extrabold bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition shadow-md shadow-blue-600/10">
+                    바로가기 <i class="fa-solid fa-arrow-right ml-2.5 text-sm"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 카드 1 -->
+            <div class="bg-slate-900/80 border border-slate-800 p-8 sm:p-10 rounded-2xl">
+                <span class="text-emerald-400 text-sm sm:text-base font-bold block mb-3 tracking-widest uppercase">Target & Quota</span>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">모집 대상 및 정원</h3>
+                <p class="text-white text-base sm:text-lg leading-relaxed font-normal">
+                    전국 직업계고 <strong>3학년 재학생 25명</strong> 선발 <br>회계·세무 관련 학과 또는 유사 전공 학생을 대상으로 운영되는 전공연계 과정입니다.
+                </p>
+            </div>
+
+            <!-- 카드 2 (레드 접수 기간 하이라이트) -->
+            <div class="bg-slate-900/80 border border-slate-800 p-8 sm:p-10 rounded-2xl relative">
+                <span class="text-red-400 text-sm sm:text-base font-bold block mb-3 tracking-widest uppercase">Deadline & Term</span>
+                <span class="absolute top-8 right-8 px-3 py-1.5 bg-red-600 text-white text-xs sm:text-sm font-black rounded-md animate-pulse">마감 임박 D-5</span>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">접수 및 교육 기간</h3>
+                <div class="space-y-2 text-white text-base sm:text-lg leading-relaxed font-normal">
+                    <p class="text-red-400 font-bold">접수: 2026. 05. 11 ~ 2026. 06. 15 (최종마감)</p>
+                    <p>교육: 2026. 08. 03 ~ 2026. 10. 16 (350시간 / 3개월)</p>
+                </div>
+            </div>
+
+            <!-- 카드 3 -->
+            <div class="bg-slate-900/80 border border-slate-800 p-8 sm:p-10 rounded-2xl">
+                <span class="text-blue-400 text-sm sm:text-base font-bold block mb-3 tracking-widest uppercase">Location & Contact</span>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">교육 장소 및 실무 특징</h3>
+                <div class="space-y-2 text-white text-base sm:text-lg leading-relaxed font-normal">
+                    <p>장소: <strong>조세통람 교육장(서울 중구)</strong> *기숙사 미제공</p>
+                    <p class="text-emerald-350 font-bold">한국공인회계사회가 현장 수요를 반영해 설계한 교육과정</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- 공식 선발 및 모집 전형 타임라인 (Timeline Section) -->
+<section class="py-20 bg-slate-100 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3">공식 선발 및 교육 전형 일정</h2>
+            <p class="text-slate-700 mt-4 text-base sm:text-lg leading-relaxed">
+                6월 7일 원서 접수 마감 이후 차수별 면접 및 합격 통보가 순차적으로 이루어집니다.
+            </p>
+        </div>
+
+        <!-- 타임라인 인포그래픽 - 5개 단계로 완벽히 정렬된 5열 그리드 -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
+            
+            <!-- 스텝 1 (원서접수 박스 글자 버튼화 + 호버메세지 툴팁 구현, 긴급을 요하는 RED 강조) -->
+            <div class="bg-white p-6 rounded-2xl border-2 border-red-500 shadow-md relative flex flex-col justify-between">
+                <div>
+                    <span class="absolute -top-3.5 left-6 px-3.5 py-1 bg-red-600 text-white text-xs font-black rounded-full animate-bounce">진행중! D-5</span>
+                    <div class="text-red-650 font-extrabold text-sm sm:text-base mb-2">STEP 01</div>
+                    
+                    <!-- 호버 타이틀 적용된 링크 버튼 형태 -->
+                    <div class="relative group inline-block w-full">
+                        <a href="https://hi.korchamhrd.net/education/applicationYWrite.do?rootMenuId=5226&menuId=5443&gaebalwon_cd=90120&gwajeong_no=M2026001&mojip_cd=111002&mode=insert&hullyeon_gb=890019" target="_blank" title="원서접수 바로가기" class="block w-full text-left font-black text-lg sm:text-xl text-blue-600 hover:text-blue-800 hover:underline transition mb-3">
+                            원서 접수 <i class="fa-solid fa-arrow-up-right-from-square text-sm ml-1"></i>
+                        </a>
+                        <!-- 호버 커스텀 풍선도움말 메세지 -->
+                        <div class="absolute bottom-full left-0 mb-3 hidden group-hover:block bg-slate-900 text-white text-xs sm:text-sm font-bold py-2 px-3 rounded shadow-lg whitespace-nowrap z-20">
+                            원서접수 바로가기
+                            <div class="w-2.5 h-2.5 bg-slate-900 rotate-45 absolute top-full left-5 -mt-1"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-800 text-base sm:text-lg font-bold">2026.05.11 ~ 06.15</p>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed border-t border-slate-100 pt-4">학생 직무수행계획서 및 서류 심사가 우선 적용됩니다.</p>
+            </div>
+
+            <!-- 스텝 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="text-blue-600 font-extrabold text-sm sm:text-base mb-2">STEP 02</div>
+                    <h4 class="font-bold text-lg sm:text-xl text-slate-900 mb-2">대면 면접</h4>
+                    <p class="text-slate-800 text-base sm:text-lg font-bold">2026.05.26 ~ 06.17</p>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed border-t border-slate-100 pt-4">대상자에게 개별 메시지 및 유선 안내를 제공합니다.</p>
+            </div>
+
+            <!-- 스텝 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="text-blue-600 font-extrabold text-sm sm:text-base mb-2">STEP 03</div>
+                    <h4 class="font-bold text-lg sm:text-xl text-slate-900 mb-2">합격자 발표</h4>
+                    <p class="text-slate-800 text-base sm:text-lg font-bold">2026.06.26</p>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed border-t border-slate-100 pt-4">공식 선발이 완료된 최종 합격자 25명의 개별 통보일입니다.</p>
+            </div>
+
+            <!-- 스텝 4 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="text-emerald-600 font-extrabold text-sm sm:text-base mb-2">STEP 04</div>
+                    <h4 class="font-bold text-lg sm:text-xl text-slate-900 mb-2">과정 입학일</h4>
+                    <p class="text-slate-800 text-base sm:text-lg font-bold">2026.08.03</p>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed border-t border-slate-100 pt-4">전체 소집 오리엔테이션 및 본격적인 훈련 시작일입니다.</p>
+            </div>
+
+            <!-- 스텝 5 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="text-emerald-600 font-extrabold text-sm sm:text-base mb-2">STEP 05</div>
+                    <h4 class="font-bold text-lg sm:text-xl text-slate-900 mb-2">정규 교육 기간</h4>
+                    <p class="text-slate-800 text-base sm:text-lg font-bold">2026.08.03 ~ 10.16</p>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base mt-4 leading-relaxed border-t border-slate-100 pt-4">3개월(350시간) 동안 전방위적인 집중 실무 훈련을 전개합니다.</p>
+            </div>
+
+        </div>
+
+        <!-- 상담 신청 버튼 통합 바 (폰트 크기 상향 및 블루 연계) -->
+        <div class="mt-10 bg-blue-50 border border-blue-200 rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-base sm:text-lg text-slate-800">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-phone text-blue-600 animate-pulse text-lg shrink-0"></i>
+                <span class="leading-relaxed">상세 전형 절차 및 입과 행정 문의는 <strong>공식 문의처(02-2262-5719)</strong>를 통해 성실히 안내해 드립니다.</span>
+            </div>
+            <a href="https://hi.korchamhrd.net/education/adviceRequest.do?rootMenuId=5226&menuId=5443&gaebalwon_cd=90120&gwajeong_no=M2026001&mojip_cd=111002&mode=insert&hullyeon_gb=890019" class="inline-flex items-center justify-center px-6 py-3 font-extrabold bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm sm:text-base transition whitespace-nowrap shadow-md shadow-blue-600/10">
+                <i class="fa-solid fa-headset mr-2"></i> 상담 신청
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- 무엇을 배우게 되나요? (6단계 교육과정 설계) -->
+<section id="curriculum" class="py-20 sm:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <!-- 중간 제목 스케일 조정 (text-3xl sm:text-4xl) -->
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight">
+                한국공인회계사회가 직접 설계했습니다
+            </h2>
+            <p class="text-slate-700 mt-5 text-lg sm:text-xl leading-relaxed mb-8">
+                실제 세무·회계 현장에서 요구되는 역량을 반영하여 한국공인회계사회가 직접 설계하고 엄선한 실무 중심 커리큘럼입니다.
+            </p>
+            <!-- 기존 <button> 대신 <a> 태그 사용 -->
+            <div class="flex justify-center">
+                <a href="(3학년)직업계고 채용연계형 직무교육과정 지원사업 교육과정 운영계획서_조세통람.pdf" 
+                   target="_blank" 
+                   class="inline-flex items-center justify-center px-8 py-3.5 text-base sm:text-lg font-extrabold bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition shadow-md shadow-blue-600/10">
+                    <i class="fa-solid fa-file-pdf mr-2.5"></i> 과정운영계획서 다운로드
+                </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 단계 1 -->
+            <div class="bg-slate-50 border border-slate-200 p-8 sm:p-10 rounded-3xl relative hover:border-blue-300 transition duration-300 shadow-sm">
+                <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 mb-5 flex items-center"><span class="w-3 h-3 bg-blue-600 rounded-full mr-2.5"></span> 1단계. 회계의 기초 이해</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg text-slate-700 font-medium">
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 회계의 순환과정</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 재무제표 이해</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 차변·대변과 분개</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 계정과목 분류 및 거래 해석</li>
+                </ul>
+            </div>
+
+            <!-- 단계 2 -->
+            <div class="bg-slate-50 border border-slate-200 p-8 sm:p-10 rounded-3xl relative hover:border-blue-300 transition duration-300 shadow-sm">
+                <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 mb-5 flex items-center"><span class="w-3 h-3 bg-blue-600 rounded-full mr-2.5"></span> 2단계. ERP 기반 실무 역량</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg text-slate-700 font-medium">
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 기초정보 관리</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 일반전표 입력</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 매입·매출 관리</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 부가세 처리 및 결산 재무제표</li>
+                </ul>
+            </div>
+
+            <!-- 단계 3 -->
+            <div class="bg-slate-50 border border-slate-200 p-8 sm:p-10 rounded-3xl relative hover:border-blue-300 transition duration-300 shadow-sm">
+                <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 mb-5 flex items-center"><span class="w-3 h-3 bg-blue-600 rounded-full mr-2.5"></span> 3단계. 실무 검토 및 데이터 분석</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg text-slate-700 font-medium">
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 오류 수정 및 검토</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 시산표 분석</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 재무제표 검토</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 장부 조회 및 분석적 활용</li>
+                </ul>
+            </div>
+
+            <!-- 단계 4 -->
+            <div class="bg-slate-50 border border-slate-200 p-8 sm:p-10 rounded-3xl relative hover:border-blue-300 transition duration-300 shadow-sm">
+                <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 mb-5 flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2.5"></span> 4단계. AI 활용 회계 실무</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg text-slate-700 font-medium">
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 생성형 AI 활용 기법</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> AI 기반 업무 흐름 이해</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 디지털 업무 자동화(RPA) 기초</li>
+                </ul>
+            </div>
+
+            <!-- 단계 5 -->
+            <div class="bg-slate-50 border border-slate-200 p-8 sm:p-10 rounded-3xl relative hover:border-blue-300 transition duration-300 shadow-sm">
+                <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 mb-5 flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2.5"></span> 5단계. 프로젝트 실습</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg text-slate-700 font-medium">
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> ERP 기반 가상회사 운영</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 부가세 신고 사례 종합 실습</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> AI·ERP 연계 포트폴리오 제작</li>
+                </ul>
+            </div>
+
+            <!-- 단계 6 -->
+            <div class="bg-slate-50 border border-slate-200 p-8 sm:p-10 rounded-3xl relative hover:border-blue-300 transition duration-300 shadow-sm">
+                <h3 class="font-extrabold text-lg sm:text-xl text-slate-900 mb-5 flex items-center"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2.5"></span> 6단계. 자격 및 취업 준비</h3>
+                <ul class="space-y-3.5 text-base sm:text-lg text-slate-700 font-medium">
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> FAT 1·2급 집중 대비</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 국가공인 AT 자격 완벽 연계</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 일대일 자기소개서 및 면접 컨설팅</li>
+                    <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-2.5 text-sm shrink-0"></i> 직무 비즈니스 에티켓 함양</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- 선생님께 드리는 말씀 (Message for Teachers Section) -->
+<section class="py-20 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-slate-900 via-slate-850 to-blue-950 text-white border border-white/10 rounded-3xl p-8 sm:p-14 relative overflow-hidden shadow-2xl">
+            <div class="absolute right-6 top-6 text-emerald-400/5 text-9xl select-none font-serif leading-none">“</div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent pointer-events-none"></div>
+            
+            <div class="max-w-3xl mx-auto space-y-8 relative z-10">
+                <div class="text-center sm:text-left">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
+                        선생님께 드리는 말씀
+                    </h3>
+                </div>
+                
+                <div class="text-white text-base sm:text-lg leading-relaxed space-y-6 font-medium">
+                    <p>
+                        본 과정은 학생들이 회계·세무 실무를 통해 기업과 사회를 이해하는 역량을 갖추고, 첫 번째 실무경력을 시작할 수 있도록 지원하는 인재양성 과정입니다.
+                    </p>
+                    <p class="font-bold text-white border-l-4 border-blue-400 pl-5 py-3 bg-white/5 rounded-r-lg text-lg sm:text-xl leading-normal">
+                        회계사무소와 회계법인은 학생들의 최종 목적지가 아닙니다.<br>
+                        더 넓은 미래와 다양한 가능성으로 나아가기 위한 출발점입니다.
+                    </p>
+                    <p>
+                        한국공인회계사회는 학생들이 안정적인 첫 경력을 시작하고 지속적으로 성장할 수 있도록 늘 곁에서 든든하게 함께하겠습니다.
+                    </p>
+                </div>
+                
+                <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-200">
+                    <span>※ 본 교육과정은 교육부와 대한상공회의소가 주관하는 특성화고 채용연계형 직무교육 과정입니다.</span>
+                    <div class="flex items-center space-x-3">
+                        <img src="kicpa_logo_white.png" alt="KICPA" class="h-7 w-auto object-contain" onerror="this.style.display='none';">
+                        <span class="text-slate-400">·</span>
+                        <img src="josetongram_logo_white.png" alt="조세통람" class="h-5 w-auto object-contain" onerror="this.style.display='none';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- 교사용 1대1 대화형 상담 가이드 웹카드 섹션 (상담 가이드 통합본) -->
+<section id="web-card" section class="py-20 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3">진로 상담용 인터랙티브 가이드 웹카드</h2>
+            <p class="text-slate-700 mt-4 text-base sm:text-lg leading-relaxed">
+                학생과 대화할 때 마주하는 현실적인 편견과 오해들, 클릭을 통해 공인된 팩트와 명쾌한 해결 비전을 제시해 주세요. 
+                <span class="text-emerald-600 font-bold">카드를 누르면 뒤집힙니다.</span>
+            </p>
+        </div>
+
+
+
+    <!-- 인터랙티브 카드 그리드 -->
+    <section class="mb-16">
+        <h3 class="text-base font-bold text-slate-400 tracking-wider mb-6 uppercase no-print"><i class="fa-solid fa-layer-group mr-1.5 text-blue-600"></i> 선생님용 1대1 대화형 상담 세션 카드</h3>
+        
+        <div id="print-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 pb-4">
+            
+            <!-- CARD 1: 프레임의 전환 -->
+            <div class="card-element group perspective h-[460px] cursor-pointer" onclick="toggleCardFlip(this)">
+
+                <div class="card-inner-box relative w-full h-full duration-700 preserve-3d shadow-md hover:shadow-xl rounded-2xl border border-slate-200">
+                    
+                    <!-- Front Side -->
+                    <div class="card-front absolute inset-0 w-full h-full bg-white rounded-2xl p-8 flex flex-col justify-between backface-hidden z-20">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold text-blue-650 tracking-widest uppercase font-mono">Card 01</span>
+                                <span class="text-[12px] bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded-lg">프레임의 전환</span>
+                            </div>
+                            <div class="mt-14 space-y-4">
+                                <h3 class="text-base font-bold text-slate-400 uppercase tracking-wider">학생들의 보편적 오해 및 불안</h3>
+                                <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-snug">
+                                    "회계사무소는 너무 작고,<br>
+                                    평생 똑같은 일에 갇혀 지낼까 봐 불안해요."
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex justify-between items-center text-sm text-slate-400">
+                            <span><i class="fa-regular fa-comment-dots text-emerald-500 mr-1"></i> 균형 잡힌 관점 열어주기</span>
+                            <span class="font-bold text-blue-600 no-print">터치해서 뒤집기 <i class="fa-solid fa-rotate ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Back Side -->
+                    <div class="card-back absolute inset-0 w-full h-full bg-gradient-to-br from-slate-950 to-blue-950 text-white rounded-2xl p-8 flex flex-col justify-between rotate-y-180 backface-hidden z-10">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start border-b border-white/10 pb-3">
+                                <span class="text-base font-bold text-emerald-400 tracking-widest uppercase">Card 01 상담 비전</span>
+                                <span class="text-[12px] bg-white/10 text-slate-300 font-bold px-2 py-1 rounded-lg">다양한 기업을 경험할 수 있는 기회</span>
+                            </div>
+                            <h4 class="text-emerald-400 font-bold text-base">💡 "회계·세무 실무를 가장 가까이에서 배울 수 있는 시작점입니다"</h4>
+                            <p class="text-slate-300 text-base sm:text-base leading-relaxed font-light">
+                                회계사무소에서는 여러 기업의 회계·세무 업무를 지원하며 실무 경험을 쌓게 됩니다. 일반 기업의 신입사원이 특정 부서의 업무를 중심으로 경험하는 것과 달리, 회계사무소에서는 다양한 업종의 기업을 접하며 회계·세무 업무 전반을 이해할 수 있습니다. 사회초년생이 실무 역량과 업무 이해도를 빠르게 쌓을 수 있는 좋은 출발점이 될 수 있습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: 경쟁력 비교 -->
+            <div class="card-element group perspective h-[460px] cursor-pointer" onclick="toggleCardFlip(this)">
+                <div class="card-inner-box relative w-full h-full duration-700 preserve-3d shadow-md hover:shadow-xl rounded-2xl border border-slate-200">
+        
+                    <!-- Front Side -->
+                    <div class="card-front absolute inset-0 w-full h-full bg-white rounded-2xl p-8 flex flex-col justify-between backface-hidden z-20">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold text-blue-650 tracking-widest uppercase font-mono">Card 02</span>
+                                <span class="text-[12px] bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded-lg">환경과 강점 비교</span>
+                            </div>
+                            <div class="mt-14 space-y-4">
+                                <h3 class="text-base font-bold text-slate-400 uppercase tracking-wider">업무의 환경적 특성 이해</h3>
+                                <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-snug">
+                                    "일반 회사의 회계·경리직과<br>
+                                    회계사무소는 무엇이 다른가요?"
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex justify-between items-center text-sm text-slate-400">
+                            <span><i class="fa-solid fa-scale-balanced text-emerald-500 mr-1"></i> 각 진로별 고유한 강점 비교</span>
+                            <span class="font-bold text-blue-600 no-print">터치해서 뒤집기 <i class="fa-solid fa-rotate ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Back Side -->
+                    <div class="card-back absolute inset-0 w-full h-full bg-gradient-to-br from-slate-950 to-blue-950 text-white rounded-2xl p-8 flex flex-col justify-between rotate-y-180 backface-hidden z-10">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start border-b border-white/10 pb-3">
+                                <span class="text-base font-bold text-emerald-400 tracking-widest uppercase">Card 02 팩트 체크</span>
+                                <span class="text-[12px] bg-white/10 text-slate-300 font-bold px-2 py-1 rounded-lg">직무 환경과 성장 역량의 차이</span>
+                            </div>
+                            <div class="space-y-2.5">
+                                <div class="grid grid-cols-3 gap-2 text-center text-[14px] font-bold border-b border-white/20 pb-2 text-emerald-400">
+                                    <div>구분</div>
+                                    <div>일반 기업 회계·경리직</div>
+                                    <div>회계사무소 실무자</div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-sm border-b border-white/10 pb-2 font-light">
+                                    <div class="font-bold text-slate-300">실무 환경</div>
+                                    <div>한 기업의 내부 시스템 심화</div>
+                                    <div class="font-semibold text-white">다양한 업종의 외부 조세 수임</div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-sm border-b border-white/10 pb-2 font-light">
+                                    <div class="font-bold text-slate-300">핵심 역량</div>
+                                    <div>자체 결산 및 사내 자원 통제</div>
+                                    <div class="font-semibold text-white">재무제표 작성과 세무 조정</div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-sm border-b border-white/10 pb-2 font-light">
+                                    <div class="font-bold text-slate-300">성장 장점</div>
+                                    <div>조직 내부 정착 및 안정성</div>
+                                    <div class="font-semibold text-white">범용적 비즈니스 안목 확장</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-[14px] text-slate-400 italic border-t border-white/5 pt-2">
+                            * 한 기업의 살림을 깊이 있게 책임지며 안정감을 얻고 싶다면 일반 기업을, 초기에 다양한 업계의 흐름을 빠르게 겪으며 범용적인 무기를 키우고 싶다면 회계사무소를 추천하며 학생의 성향에 맞게 지도해 주십시오.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- CARD 3: 미래 로드맵 -->
+            <div class="card-element group perspective h-[460px] cursor-pointer" onclick="toggleCardFlip(this)">
+                <div class="card-inner-box relative w-full h-full duration-700 preserve-3d shadow-md hover:shadow-xl rounded-2xl border border-slate-200">
+                    
+                    <!-- Front Side -->
+                    <div class="card-front absolute inset-0 w-full h-full bg-white rounded-2xl p-8 flex flex-col justify-between backface-hidden z-20">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold text-blue-650 tracking-widest uppercase font-mono">Card 03</span>
+                                <span class="text-[12px] bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded-lg">미래 로드맵</span>
+                            </div>
+                            <div class="mt-14 space-y-4">
+                                <h3 class="text-base font-bold text-slate-400 uppercase tracking-wider">장기적 직무 확장 모델</h3>
+                                <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-snug">
+                                    "회계사무소에서 경력을<br>
+                                    시작한 이후엔 어떻게 성장하나요?"
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex justify-between items-center text-sm text-slate-400">
+                            <span><i class="fa-solid fa-route text-emerald-500 mr-1"></i> 검증된 세 갈래 진로 확장판</span>
+                            <span class="font-bold text-blue-600 no-print">터치해서 뒤집기 <i class="fa-solid fa-rotate ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Back Side -->
+                    <div class="card-back absolute inset-0 w-full h-full bg-gradient-to-br from-slate-950 to-blue-950 text-white rounded-2xl p-8 flex flex-col justify-between rotate-y-180 backface-hidden z-10">
+                        <div class="space-y-3 overflow-y-auto max-h-[350px]">
+                            <div class="flex justify-between items-start border-b border-white/10 pb-2">
+                                <span class="text-base font-bold text-emerald-400 tracking-widest uppercase">Card 03 커리어 비전</span>
+                                <span class="text-[12px] bg-white/10 text-slate-300 font-bold px-2 py-1 rounded-lg">다양한 진로 설계</span>
+                            </div>
+                            <div class="space-y-2 text-sm font-light leading-relaxed">
+                                <div>
+                                    <span class="font-bold text-emerald-400 block">[Route 1] 회계·세무 분야 실무 전문가 성장</span>
+                                    <p class="text-slate-300">회계사무소나 회계법인에서 경력을 쌓으며 고객 기업의 회계·세무 업무를 지원하는 실무 전문가로 성장할 수 있습니다. 경험이 축적될수록 보다 복잡한 업무를 담당하고 조직 내에서 중요한 역할을 수행할 수 있습니다.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-emerald-400 block">[Route 2] 일반 기업 회계·재무 분야 진출</span>
+                                    <p class="text-slate-300">회계사무소에서 다양한 기업의 회계·세무 업무를 경험하면 기업의 재무·회계 업무 전반에 대한 이해를 넓힐 수 있습니다. 이러한 경험은 향후 일반 기업의 회계, 재무, 경영지원 분야로 진출하는 데 도움이 될 수 있습니다.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-emerald-400 block">[Route 3] 전문 자격 취득 및 학업 연계</span>
+                                    <p class="text-slate-300">실무 경험을 바탕으로 세무사, 공인회계사 등 전문 자격에 도전하거나, 선취업 후진학을 통해 학업과 경력을 함께 이어갈 수 있습니다. 현장 경험은 향후 진로를 구체적으로 설계하는 데 도움이 될 수 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-[14px] text-slate-400 italic border-t border-white/5 pt-2">
+                            * 학생의 기질과 성향에 따라 도달할 수 있는 다양한 로드맵을 함께 짚어주세요.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CARD 4: AI 시대 생존법 -->
+            <div class="card-element group perspective h-[460px] cursor-pointer" onclick="toggleCardFlip(this)">
+                <div class="card-inner-box relative w-full h-full duration-700 preserve-3d shadow-md hover:shadow-xl rounded-2xl border border-slate-200">
+                    
+                    <!-- Front Side -->
+                    <div class="card-front absolute inset-0 w-full h-full bg-white rounded-2xl p-8 flex flex-col justify-between backface-hidden z-20">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-sm font-bold text-blue-650 tracking-widest uppercase font-mono">Card 04</span>
+                                <span class="text-[12px] bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded-lg">AI 시대 생존법</span>
+                            </div>
+                            <div class="mt-14 space-y-4">
+                                <h3 class="text-base font-bold text-slate-400 uppercase tracking-wider">미래 기술 변화에 대한 우려</h3>
+                                <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-snug">
+                                    "요즘은 AI 컴퓨터가 알아서<br>
+                                    다 계산해 준다는데 배울 필요 있나요?"
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4 flex justify-between items-center text-sm text-slate-400">
+                            <span><i class="fa-solid fa-robot text-emerald-500 mr-1"></i> 대체되지 않는 데이터의 최종 기획자</span>
+                            <span class="font-bold text-blue-600 no-print">터치해서 뒤집기 <i class="fa-solid fa-rotate ml-1"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Back Side -->
+                    <div class="card-back absolute inset-0 w-full h-full bg-gradient-to-br from-slate-950 to-blue-950 text-white rounded-2xl p-8 flex flex-col justify-between rotate-y-180 backface-hidden z-10">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start border-b border-white/10 pb-3">
+                                <span class="text-base font-bold text-emerald-400 tracking-widest uppercase">Card 04 팩트 체크</span>
+                                <span class="text-[12px] bg-white/10 text-slate-300 font-bold px-2 py-1 rounded-lg">인간 고유 지능의 중요성</span>
+                            </div>
+                            <h4 class="text-emerald-400 font-bold text-base">💡 "AI 시대에도 회계·세무에 대한 이해는 중요한 역량입니다"</h4>
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                                AI는 반복적인 업무를 빠르게 처리할 수 있지만, 결과를 검토하고 상황에 맞게 판단하는 과정까지 모두 대신할 수는 없습니다. <br>회계·세무는 기업의 돈의 흐름과 경영활동을 이해하는 분야입니다. 이러한 이해를 바탕으로 데이터를 해석하고 활용하는 능력은 앞으로도 다양한 직무에서 활용될 수 있습니다.<br>회계·세무 지식과 AI 활용 능력을 함께 갖춘다면 변화하는 업무 환경에 보다 유연하게 대응할 수 있습니다.
+                            </p>
+                        </div>
+                        <div class="text-[14px] text-slate-400 italic border-t border-white/5 pt-3">
+                            * 회계·세무 역량은 AI를 효과적으로 활용하고 결과를 해석하는 데 도움이 되는 기반 역량입니다.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    </div>
+</section>
+<!-- 공식 푸터 (CI 로고 교체 대응형 탑재) -->
+<footer class="bg-slate-900 text-slate-200 py-16 border-t border-slate-800 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+        <div class="flex flex-col sm:flex-row justify-between items-center border-b border-slate-800 pb-8 mb-8 gap-6">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="kicpa_logo_white.png" alt="KICPA" class="h-8 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('footer-kicpa-fallback').style.display='block';">
+                    <div id="footer-kicpa-fallback" class="hidden bg-slate-800 text-white border border-slate-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold tracking-widest">KICPA</div>
+                    <span class="text-slate-700">|</span>
+                    <img src="josetongram_logo_white.png" alt="조세통람" class="h-6 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('footer-jt-fallback').style.display='block';">
+                    <span id="footer-jt-fallback" class="hidden font-bold text-white text-base sm:text-lg tracking-wide">조세통람</span>
+                </div>
+            </div>
+            <div class="text-sm sm:text-base text-slate-300 font-medium">
+                본 사업은 교육부·대한상공회의소 지침을 바탕으로 투명하고 정당한 교육 기회 제공을 주 목적으로 합니다.
+            </div>
+        </div>
+        <div class="text-xs sm:text-sm space-y-3 text-slate-400 leading-loose">
+            <p>© 2026 Korean Institute of Certified Public Accountants & Jose Tongram. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /**
+     * 1. 과정운영계획서 다운로드 실행 및 알림
+     */
+    function triggerPlanDownload() {
+
+        showNotification("과정운영계획서 다운로드가 시작되었습니다.");
+    }
+
+    /**
+     * 2. 진로 상담 웹카드 3D 뒤집기 효과
+     * 카드 클릭 시 'rotate-y-180' 클래스를 토글합니다.
+     */
+    function toggleCardFlip(cardElement) {
+        const innerBox = cardElement.querySelector('.card-inner-box');
+        if (innerBox) {
+            innerBox.classList.toggle('rotate-y-180');
+        }
+    }
+
+    /**
+     * 3. 토스트 알림 메시지 (공용 유틸리티)
+     * 사용자 액션에 대한 피드백을 화면 우측 하단에 보여줍니다.
+     */
+    function showNotification(message) {
+        const toast = document.createElement('div');
+        toast.className = "fixed bottom-5 right-5 z-50 bg-slate-900/95 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-xl text-xs sm:text-sm font-bold flex items-center space-x-2 border border-blue-500/30 transition duration-300";
+        toast.innerHTML = `<i class="fa-solid fa-bell text-yellow-400 animate-bounce"></i> <span>${message}</span>`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
