@@ -104,7 +104,7 @@
         </nav>
         <div class="flex items-center space-x-3">
             <span class="hidden lg:inline-flex items-center px-4 py-2 rounded-full text-xs sm:text-sm font-black bg-red-100 text-red-600 animate-pulse border border-red-200">
-                <i class="fa-solid fa-hourglass-half mr-1.5"></i> D-5 마감임박
+                <i class="fa-solid fa-hourglass-half mr-1.5"></i> <span class="d-day-text">D-5</span> 마감임박
             </span>
             <a href="https://hi.korchamhrd.net/education/applicationYWrite.do?rootMenuId=5226&menuId=5443&gaebalwon_cd=90120&gwajeong_no=M2026001&mojip_cd=111002&mode=insert&hullyeon_gb=890019" target="_blank" class="inline-flex items-center justify-center px-6 py-3 text-sm sm:text-base font-bold text-white bg-blue-600 hover:bg-blue-700 transition rounded-xl shadow-md shadow-blue-600/10">
                 원서접수하기
@@ -123,7 +123,7 @@
             <!-- 왼쪽: 과정명 중심의 메인 카피 (줄간격 완벽 개선) -->
             <div class="lg:col-span-8 space-y-8 text-center lg:text-left">
                 <div class="inline-flex flex-col sm:flex-row sm:items-center gap-2 bg-red-500/15 border border-red-500/30 text-red-300 px-5 py-2.5 rounded-xl text-sm sm:text-base font-bold max-w-fit mx-auto lg:mx-0 shadow-sm">
-                    <span class="flex items-center"><i class="fa-solid fa-clock mr-2 animate-spin"></i> 접수마감 D-5일 (6월 15일 최종 마감!)</span>
+                    <span class="flex items-center"><i class="fa-solid fa-clock mr-2 animate-spin"></i> 접수마감 <span class="d-day-text">D-5</span>일 (6월 15일 최종 마감!)</span>
                     <span class="hidden sm:inline text-slate-500">|</span>
                     <span class="text-emerald-355">교육부 · 대한상공회의소 주관 채용연계형 과정</span>
                 </div>
@@ -273,7 +273,7 @@
             <!-- 카드 2 (레드 접수 기간 하이라이트) -->
             <div class="bg-slate-900/80 border border-slate-800 p-8 sm:p-10 rounded-2xl relative">
                 <span class="text-red-400 text-sm sm:text-base font-bold block mb-3 tracking-widest uppercase">Deadline & Term</span>
-                <span class="absolute top-8 right-8 px-3 py-1.5 bg-red-600 text-white text-xs sm:text-sm font-black rounded-md animate-pulse">마감 임박 D-5</span>
+                <span class="absolute top-8 right-8 px-3 py-1.5 bg-red-600 text-white text-xs sm:text-sm font-black rounded-md animate-pulse">마감 임박 <span class="d-day-text">D-5</span></span>
                 <h3 class="text-xl sm:text-2xl font-bold mb-4 text-white">접수 및 교육 기간</h3>
                 <div class="space-y-2 text-white text-base sm:text-lg leading-relaxed font-normal">
                     <p class="text-red-400 font-bold">접수: 2026. 05. 11 ~ 2026. 06. 15 (최종마감)</p>
@@ -313,7 +313,7 @@
             <!-- 스텝 1 (원서접수 박스 글자 버튼화 + 호버메세지 툴팁 구현, 긴급을 요하는 RED 강조) -->
             <div class="bg-white p-6 rounded-2xl border-2 border-red-500 shadow-md relative flex flex-col justify-between">
                 <div>
-                    <span class="absolute -top-3.5 left-6 px-3.5 py-1 bg-red-600 text-white text-xs font-black rounded-full animate-bounce">진행중! D-5</span>
+                    <span class="absolute -top-3.5 left-6 px-3.5 py-1 bg-red-600 text-white text-xs font-black rounded-full animate-bounce">진행중! <span class="d-day-text">D-5</span></span>
                     <div class="text-red-650 font-extrabold text-sm sm:text-base mb-2">STEP 01</div>
                     
                     <!-- 호버 타이틀 적용된 링크 버튼 형태 -->
@@ -814,6 +814,40 @@
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }
+
+    function updateDDay() {
+        // 목표 날짜 설정 (2026년 6월 15일)
+        const targetDate = new Date("2026-06-15T00:00:00");
+        const today = new Date();
+        
+        // 두 날짜 사이의 차이 계산 (밀리초 단위)
+        const diff = targetDate - today;
+        
+        // 일 단위로 변환 (소수점 올림)
+        const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        
+        let dDayString = "";
+        
+        if (diffDays > 0) {
+            dDayString = "D-" + diffDays;
+        } else if (diffDays === 0) {
+            dDayString = "D-Day";
+        } else {
+            dDayString = "접수마감";
+        }
+        
+        // 'd-day-text' 클래스를 가진 모든 요소를 찾아 텍스트 변경
+        const dDayElements = document.querySelectorAll('.d-day-text');
+        dDayElements.forEach(el => {
+            el.innerText = dDayString;
+        });
+    }
+
+    // 페이지 로드 시 실행
+    window.onload = function() {
+        updateDDay();
+        // (기존 스크립트에 있던 다른 함수가 있다면 여기서 함께 호출)
+    };
 </script>
 
 </body>
